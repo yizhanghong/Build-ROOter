@@ -85,6 +85,7 @@ jobs:
           cd $OPENWRTROOT
           echo -e "$(nproc) thread compile"
           make toolchain/compile -j$(nproc) || make toolchain/compile -j1 V=s
+          make target/compile -j$(nproc) || make target/compile -j1 V=s IGNORE_ERRORS=1
           make diffconfig
           cd $OPENWRTROOT/bin/targets/*
           TARGET=$(basename `pwd`)
