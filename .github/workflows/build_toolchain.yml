@@ -106,7 +106,7 @@ jobs:
         id: generate
         run: |
           export FILE_NAME="toolchain-image-$REPO_USER-$REPO_NAME-$REPO_BRANCH-$TARGET-$SUBTARGET.img"
-          mksquashfs openwrt $FILE_NAME -force-gid 1001 -force-uid 1001 -comp xz
+          tar -zcvf $FILE_NAME openwrt
           mkdir output
           mv $FILE_NAME output
           echo "::set-output name=RELEASE_TAG::$REPO_USER-$REPO_NAME-$REPO_BRANCH"
