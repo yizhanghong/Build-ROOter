@@ -63,7 +63,9 @@ jobs:
         id: download
         run: |
           mv .config_toolchain $OPENWRTROOT/.config
+          ls
           cd $OPENWRTROOT
+          ls
           make defconfig
           make download -j16
           find dl -size -1024c -exec ls -l {} \;
