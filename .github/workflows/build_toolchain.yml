@@ -62,7 +62,7 @@ jobs:
       - name: Download Packages
         id: download
         run: |
-          mv config/bcm27xx/$PLATFORM.config $OPENWRTROOT/.config
+          mv .config_toolchain $OPENWRTROOT/.config
           cd $OPENWRTROOT
           make defconfig
           make download -j16
