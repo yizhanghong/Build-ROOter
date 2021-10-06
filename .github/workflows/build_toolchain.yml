@@ -18,15 +18,14 @@ env:
   REPO_URL: https://github.com/ofmodemsandmen/RooterSource
   REPO_BRANCH: master
   TZ: Asia/Jakarta
+  PLATFORM: bcm2708
 
 jobs:
   Build:
     runs-on: ubuntu-18.04
     strategy:
       fail-fast: false
-      matrix:
-        PLATFORM: [bcm27xx/bcm2708]
-
+      
     steps:
       - name: Checkout
         uses: actions/checkout@main
@@ -61,11 +60,9 @@ jobs:
           ./scripts/feeds install -a
 
       - name: Download Packages
-        env:
-          PLATFORM: ${{ matrix.PLATFORM }}
         id: download
         run: |
-          mv config/$PLATFORM.config $OPENWRTROOT/.config
+          mv config/bcm27xx/$PLATFORM.config $OPENWRTROOT/.config
           cd $OPENWRTROOT
           make defconfig
           make download -j16
