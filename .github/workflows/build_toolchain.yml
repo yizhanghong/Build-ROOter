@@ -25,6 +25,8 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       fail-fast: false
+      matrix:
+        PLATFORM: [bcm27xx/bcm2708, bcm27xx/bcm2709]
       
     steps:
       - name: Checkout
@@ -60,9 +62,12 @@ jobs:
           ./scripts/feeds install -a
 
       - name: Download Packages
+        env:
+          PLATFORM: ${{ matrix.PLATFORM }}
         id: download
         run: |
-          mv .config_toolchain $OPENWRTROOT/.config
+          ls
+          mv config/$PLATFORM.config $OPENWRTROOT/.config
           ls
           cd $OPENWRTROOT
           ls
