@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/ofmodemsandmen/RooterSource
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: .config
+  CONFIG_FILE: .config_toolchain
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -69,6 +69,8 @@ jobs:
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         cd openwrt
+        echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
+        
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
@@ -112,21 +114,20 @@ jobs:
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
         
     - name: Clean Files
-        id: clean
-        run: |
+      id: clean
+      run: |
           cd $OPENWRTROOT
           make clean
           rm -rf tmp logs .config* dl
           ./scripts/feeds clean
         
     - name: Generate Toolchain Image
-        id: generate
-        run: |
+      id: generate
+      run: |
           export FILE_NAME="toolchain-image-DEVICE_NAME.tar.gz"
           tar -zcvf $FILE_NAME openwrt
           mkdir output
           mv $FILE_NAME output
-          echo "::set-output name=RELEASE_TAG::$REPO_USER-$REPO_NAME
           df -hT $PWD
 
     - name: Generate release tag
@@ -139,15 +140,13 @@ jobs:
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"
         
-    #- name: Upload firmware to release
-      #uses: softprops/action-gh-release@v1
-      #if: steps.tag.outputs.status == 'success' && !cancelled()
-      #env:
-        #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #with:
-        #tag_name: ${{ steps.tag.outputs.release_tag }}
-        #body_path: release.txt
-        #files: ${{ env.FIRMWARE }}/*
+    - name: Upload Image To Release
+      uses: softprops/action-gh-release@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          tag_name: ${{ steps.generate.outputs.RELEASE_TAG }}
+          files: output/*
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
