@@ -110,11 +110,11 @@ jobs:
       - name: Generate Toolchain Image
         id: generate
         run: |
-          export FILE_NAME="toolchain-image-$REPO_USER-$REPO_NAME-$REPO_BRANCH-$TARGET-$SUBTARGET.tar.gz"
+          export FILE_NAME="toolchain-image-$REPO_USER-$REPO_NAME-$REPO_BRANCH-$TARGET.tar.gz"
           tar -zcvf $FILE_NAME openwrt
           mkdir output
           mv $FILE_NAME output
-          echo "::set-output name=RELEASE_TAG::$REPO_USER-$REPO_NAME-$REPO_BRANCH"
+          echo "::set-output name=RELEASE_TAG::$REPO_USER-$REPO_NAME-$REPO_BRANCH-$TARGET"
           df -hT $PWD
 
       - name: Upload Image To Release
