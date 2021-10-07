@@ -113,7 +113,7 @@ jobs:
       id: generate
       run: |
           export FILE_NAME="toolchain-image-$REPO_USER-$REPO_NAME-$REPO_BRANCH-$DEVICE_NAME.tar.gz"
-          tar -zcvf $FILE_NAME /home/runner/work/Build-Openwrt/Build-Openwrt/ openwrt
+          tar -zcvf $FILE_NAME -C /home/runner/work/Build-Openwrt/Build-Openwrt/ openwrt
           mkdir output
           mv $FILE_NAME output
           df -hT $PWD
