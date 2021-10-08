@@ -73,7 +73,7 @@ jobs:
     - name: Generate Toolchain Image
       id: generate
       run: |
-          export FILE_NAME="toolchain-image-$DEVICE_NAME.tar.gz"
+          export FILE_NAME="toolchain-image.tar.gz"
           cd openwrt
           tar -cvzf $FILENAME *
           mkdir ~/work/Build-Openwrt/Build-Openwrt/output
