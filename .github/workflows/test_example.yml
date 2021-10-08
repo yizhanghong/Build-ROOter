@@ -78,6 +78,7 @@ jobs:
           tar -cvzf output/toolchain-image.tar.gz openwrt/*
           cd output
           split -b 10M toolchain-image.tar.gz "PART-toolchain-image.tar.gz.part"
+          rm toolchain-image.tar.gz
           
           
     - name: SSH connection to Actions
