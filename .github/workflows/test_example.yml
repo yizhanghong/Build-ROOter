@@ -76,13 +76,12 @@ jobs:
           export FILE_NAME="toolchain-image.tar.gz"
           mkdir ~/work/Build-Openwrt/Build-Openwrt/output
           cd openwrt
-          tar -cvzf ~/work/Build-Openwrt/Build-Openwrt/openwrt/$FILENAME *
+          tar -cvzf output/toolchain-rpi.tar.gz openwrt/*
           ls
           cd ~/work/Build-Openwrt/Build-Openwrt/
           ls
           cd ~/work/Build-Openwrt/Build-Openwrt/output
           ls
-          mv ~/work/Build-Openwrt/Build-Openwrt/openwrt/$FILENAME ~/work/Build-Openwrt/Build-Openwrt/output
           df -hT $PWD
       #mv $FILE_NAME ~/work/Build-Openwrt/Build-Openwrt/output
           
