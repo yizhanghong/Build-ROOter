@@ -112,7 +112,7 @@ jobs:
     - name: Clean Files
       id: clean
       run: |
-        cd $OPENWRTROOT
+        cd openwrt
         make clean
         rm -rf tmp logs .config* dl
         ./scripts/feeds clean
