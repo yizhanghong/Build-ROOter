@@ -112,12 +112,13 @@ jobs:
     - name: Generate Toolchain Image
       id: generate
       run: |
-          export FILE_NAME="toolchain-image-$REPO_USER-$REPO_NAME-$REPO_BRANCH-$DEVICE_NAME.tar.gz"
-          tar -zcvf $FILE_NAME -C /home/runner/work/Build-Openwrt/Build-Openwrt/ openwrt
-          mkdir output
-          mv $FILE_NAME output
-          df -hT $PWD
-          
+          export FILE_NAME="ROOTER-cache-bcm2708.tar.gz"
+          mkdir ~/work/Build-Openwrt/Build-Openwrt/output
+          tar -cvzf output/ROOTER-cache-bcm2708.tar.gz openwrt/*
+          cd output
+          split -b 1000M ROOTER-cache-bcm2708.tar.gz "PART-ROOTER-cache-bcm2708.tar.gz.part"
+          rm toolchain-image.tar.gz
+
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
@@ -137,18 +138,3 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         files: output/*
-
-    - name: Delete workflow runs
-      uses: GitRML/delete-workflow-runs@main
-      with:
-        retain_days: 1
-        keep_minimum_runs: 3
-
-    - name: Remove old Releases
-      uses: dev-drprasad/delete-older-releases@v0.1.0
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-      with:
-        keep_latest: 3
-        delete_tags: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
