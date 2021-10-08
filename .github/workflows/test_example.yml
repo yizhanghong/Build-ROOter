@@ -75,7 +75,7 @@ jobs:
       run: |
           export FILE_NAME="toolchain-image.tar.gz"
           mkdir ~/work/Build-Openwrt/Build-Openwrt/output
-          tar -cvzf output/toolchain-rpi.tar.gz openwrt/*
+          tar -cvzf output/toolchain-image.tar.gz openwrt/*
           cd output
           split -b 10M toolchain-image.tar.gz "PART-toolchain-image.tar.gz.part"
           
