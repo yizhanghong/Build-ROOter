@@ -65,7 +65,7 @@ jobs:
       id: generate
       run: |
           export FILE_NAME="toolchain-image-$DEVICE_NAME.tar.gz"
-          cd
+          pwd
           ls
           tar -zcvf $FILE_NAME openwrt
           mkdir output
