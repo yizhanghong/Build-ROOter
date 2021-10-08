@@ -60,6 +60,16 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        cd openwrt
+        echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
+        
+    - name: Clean Files
+      id: clean
+      run: |
+          cd $OPENWRTROOT
+          make clean
+          rm -rf tmp logs .config* dl
+          ./scripts/feeds clean
 
     - name: Generate Toolchain Image
       id: generate
