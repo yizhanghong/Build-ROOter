@@ -76,8 +76,9 @@ jobs:
           export FILE_NAME="toolchain-image.tar.gz"
           cd openwrt
           tar -cvzf $FILENAME *
+          ls
           mkdir ~/work/Build-Openwrt/Build-Openwrt/output
-          mv ~/work/Build-Openwrt/Build-Openwrt/openwrt/$FILE_NAME ~/work/Build-Openwrt/Build-Openwrt/output
+          mv $FILE_NAME ~/work/Build-Openwrt/Build-Openwrt/output
           cd ~/work/Build-Openwrt/Build-Openwrt/
           df -hT $PWD
           
