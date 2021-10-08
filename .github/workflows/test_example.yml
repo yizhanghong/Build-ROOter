@@ -74,13 +74,17 @@ jobs:
       id: generate
       run: |
           export FILE_NAME="toolchain-image.tar.gz"
-          cd openwrt
-          tar -cvzf $FILENAME *
-          ls
           mkdir ~/work/Build-Openwrt/Build-Openwrt/output
-          mv $FILE_NAME ~/work/Build-Openwrt/Build-Openwrt/output
+          cd openwrt
+          tar -cvzf ~/work/Build-Openwrt/Build-Openwrt/output/$FILENAME *
+          ls
           cd ~/work/Build-Openwrt/Build-Openwrt/
+          ls
+          cd ~/work/Build-Openwrt/Build-Openwrt/output
+          ls
           df -hT $PWD
+      #mv $FILE_NAME ~/work/Build-Openwrt/Build-Openwrt/output
+          
           
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
