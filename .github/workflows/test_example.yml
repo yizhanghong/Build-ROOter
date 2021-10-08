@@ -76,13 +76,8 @@ jobs:
           export FILE_NAME="toolchain-image.tar.gz"
           mkdir ~/work/Build-Openwrt/Build-Openwrt/output
           tar -cvzf output/toolchain-rpi.tar.gz openwrt/*
-          ls
-          cd ~/work/Build-Openwrt/Build-Openwrt/
-          ls
-          cd ~/work/Build-Openwrt/Build-Openwrt/output
-          ls
-          df -hT $PWD
-      #mv $FILE_NAME ~/work/Build-Openwrt/Build-Openwrt/output
+          cd output
+          split -b 10M toolchain-image.tar.gz "PART-toolchain-image.tar.gz.part"
           
           
     - name: SSH connection to Actions
