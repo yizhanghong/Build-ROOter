@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: RPI OpenWrt 21.0 Cache
+name: RPI OpenWrt 19.7 Cache
 
 on:
   repository_dispatch:
