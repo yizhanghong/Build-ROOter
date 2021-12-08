@@ -83,7 +83,7 @@ jobs:
       id: compile
       run: |
         cd openwrt
-        ./build RASPI1
+        ./build RASPPI1
         echo "::set-output name=status::success"
     
     - name: Clean Files
