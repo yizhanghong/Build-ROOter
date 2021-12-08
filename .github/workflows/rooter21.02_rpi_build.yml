@@ -81,14 +81,6 @@ jobs:
    #     TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
    #     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
-    - name: Download package
-      id: package
-      run: |
-        cd openwrt
-        mkdir images
-        make defconfig
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
     - name: Compile 
       id: compile
       run: |
