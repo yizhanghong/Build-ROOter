@@ -6278,4 +6278,5 @@ CONFIG_STRACE_NONE=y
 # end of Font-Utils
 # end of Xorg
 
+
 CONFIG_OVERRIDE_PKGS="libmbim libqmi"
