@@ -1,0 +1,26 @@
+name: Test Grive Upload
+on: [push]
+
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Archive files
+        run: |
+          sudo apt-get update
+          sudo apt-get install zip
+          zip -r archive.zip *
+
+      - name: Upload to gdrive
+        uses: adityak74/google-drive-upload-git-action@main
+        with:
+          credentials: ${{ secrets.DRIVE_CRED }}
+          filename: "archive.zip"
+          folderId: ${{ secrets.DRIVE_FOLDER }}
+          name: "documentation.zip" # optional string
+          overwrite: "true" # optional boolean
