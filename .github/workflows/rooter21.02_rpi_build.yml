@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: ROOTer 21.02 Raspberry Build
+name: ROOTer 21.02 Raspberry Pi 1 Build
 
 on:
   repository_dispatch:
@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/manvisdr/ROOterSource2102
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: .config
+  CONFIG_FILE: .config_rpi1_rooter21
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -54,12 +54,18 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
+        
     - name: Clone source code
       working-directory: /workdir
       run: |
         df -hT $PWD
         git clone $REPO_URL openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+    - name: Load custom configuration
+      run: |
+       [ -e files ] && mv files openwrt/files
+       [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+       cd openwrt
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -67,11 +73,7 @@ jobs:
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
 
-   # - name: Load custom configuration
-   #   run: |
-   #     [ -e files ] && mv files openwrt/files
-   #     [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-   #     cd openwrt
+   
    # - name: SSH connection to Actions
    #   uses: P3TERX/ssh2actions@v1.0.0
    #   if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
@@ -86,32 +88,13 @@ jobs:
         ./build RASPPI1
         echo "::set-output name=status::success"
         
-    - name: SSH connection to Actions
-      uses: P3TERX/ssh2actions@v1.0.0
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-
-    - name: Clean Files
-      id: clean
-      run: |
-        cd openwrt
-        rm -rf tmp logs .config* dl
-        ./scripts/feeds clean
-    - name: Generate Toolchain Image
-      id: generate
-      run: |
-          export FILE_NAME="ROOTER21-cache-bcm2708.tar.gz"
-          mkdir ~/work/Build-Openwrt/Build-Openwrt/output
-          tar -cvzf output/ROOTER21-cache-bcm2708.tar.gz openwrt/*
-          cd output
-          split -b 1000M ROOTER21-cache-bcm2708.tar.gz "PART-ROOTER21-cache-bcm2708.tar.gz.part"
-          rm ROOTER21-cache-bcm2708.tar.gz
-   
     - name: Generate release tag
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
         echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
         echo "::set-output name=status::success"
+        
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
@@ -119,4 +102,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
-        files: output/*
+        files: images/*
