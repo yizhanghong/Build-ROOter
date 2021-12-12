@@ -1,4 +1,4 @@
-name: Store readme in Drive
+name: Test Upload in GDrive
 on:
   repository_dispatch:
   workflow_dispatch:
