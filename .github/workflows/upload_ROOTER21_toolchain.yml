@@ -60,7 +60,7 @@ jobs:
     - name: Upload 1 to Google Drive
       uses: Jodebu/upload-to-drive@master
       with:
-       target: output/*
+       target: ./output
        credentials: ${{ secrets.DRIVE_CRED }}
        folder: ${{ secrets.DRIVE_FOLDER }}
        
