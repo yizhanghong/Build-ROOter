@@ -61,9 +61,19 @@ jobs:
           rm ROOTER21.2-cache-bcm2708.tar.gz
    
       # Upload to Drive
-    - name: Upload README.md to Google Drive
+    - name: Upload to gdrive
+      uses: adityak74/google-drive-upload-git-action@main
+      with:
+          credentials: ${{ secrets.DRIVE_CRED }}
+          filename: output/*
+          folderId: ${{ secrets.DRIVE_FOLDER }}
+          name: "PART-ROOTER" # optional string
+          overwrite: "false" # optional boolean
+    - name: Upload 1 to Google Drive
       uses: Jodebu/upload-to-drive@master
       with:
-       target: output
-       credentials: secrets.DRIVE_CRED
-       folder: secrets.DRIVE_FOLDER
+       target: output/*
+       credentials: ${{ secrets.DRIVE_CRED }}
+       folder: ${{ secrets.DRIVE_FOLDER }}
+       
+    
