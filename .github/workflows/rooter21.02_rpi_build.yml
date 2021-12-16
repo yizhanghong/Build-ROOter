@@ -80,7 +80,6 @@ jobs:
    #   env:
    #     TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
    #     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-
     - name: Compile 
       id: compile
       run: |
@@ -88,18 +87,27 @@ jobs:
         ./build RASPPI1
         echo "::set-output name=status::success"
         
-    - name: Generate release tag
-      id: tag
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+    - name: Clean Files
+      id: clean
       run: |
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
-        echo "::set-output name=status::success"
+        cd openwrt
+        rm -rf tmp logs .config* dl
+        ./scripts/feeds clean
         
-    - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Generate Toolchain Image
+      id: generate
+      run: |
+          export FILE_NAME="ROOTER21.2-cache-bcm2708.tar.gz"
+          mkdir ~/work/Build-Openwrt/Build-Openwrt/output
+          tar -cvzf output/ROOTER21.2-cache-bcm2708.tar.gz openwrt/*
+          cd output
+          split -b 1000M ROOTER21.2-cache-bcm2708.tar.gz "PART-ROOTER21.2-cache-bcm2708.tar.gz.part"
+          rm ROOTER21.2-cache-bcm2708.tar.gz
+         
+      # Upload to Drive
+    - name: Upload 1 to Google Drive
+      uses: Jodebu/upload-to-drive@master
       with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        files: images/*
+       target: ./output
+       credentials: ${{ secrets.DRIVE_CRED }}
+       folder: ${{ secrets.DRIVE_FOLDER }}
