@@ -99,7 +99,7 @@ jobs:
       run: |
           export FILE_NAME="ROOTER21.2-cache-bcm2708.tar.gz"
           mkdir ~/work/Build-Openwrt/Build-Openwrt/output
-          tar -cvzf output/ROOTER21.2-cache-bcm2708.tar.gz openwrt/*
+          tar -cvzf output/ROOTER21.2-cache-bcm2708.tar.gz openwrt/bin/*
           cd output
           split -b 1000M ROOTER21.2-cache-bcm2708.tar.gz "PART-ROOTER21.2-cache-bcm2708.tar.gz.part"
           rm ROOTER21.2-cache-bcm2708.tar.gz
