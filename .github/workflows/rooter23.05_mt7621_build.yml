@@ -103,11 +103,3 @@ jobs:
           cd output
           split -b 1000M ROOTER23-cache-mt7621.tar.gz "PART-ROOTER23-cache-mt7621.tar.gz.part"
           rm ROOTER23-cache-mt7621.tar.gz
-         
-      # Upload to Drive
-    - name: Upload 1 to Google Drive
-      uses: Jodebu/upload-to-drive@master
-      with:
-       target: ./output
-       credentials: ${{ secrets.DRIVE_CRED }}
-       folder: ${{ secrets.DRIVE_FOLDER }}
