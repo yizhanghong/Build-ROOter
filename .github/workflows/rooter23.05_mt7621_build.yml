@@ -20,8 +20,8 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/ofmodemsandmen/ROOterSource2305
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/Demiurge67/R2305
+  REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config_mt7621_rooter23
   DIY_P1_SH: diy-part1.sh
