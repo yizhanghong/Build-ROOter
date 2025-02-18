@@ -1,0 +1,12 @@
+/dts-v1/;
+
+#include "mt7621_fw40.dtsi"
+
+/ {
+	compatible = "doonink,fw40", "mediatek,mt7621-soc";
+	model = "Doonink,FW40";
+};
+
+&firmware {
+	reg = <0x50000 0x1fb0000>;
+};

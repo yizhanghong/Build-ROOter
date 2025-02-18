@@ -1,0 +1,19 @@
+{
+	"FW40":  {
+		"details": "Doonink Fw40",
+		"type": "1",
+		"build": "2203",
+		"config": ".config_fw40",
+		"image": "openwrt-ramips-mt7621-fw40-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "Doonink-FW40",
+		"ext": "-upgrade.bin",
+		"addons": [],
+		"custom": {
+			"name": {
+				"model": "Doonink FW40"
+			},
+			"files": "/fw40/files/"
+		}	
+	}
+}
