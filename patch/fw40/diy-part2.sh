@@ -21,6 +21,7 @@ git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status.git package
 # 删除已有配置
 rm -rf configfiles/template/.config_fw40
 rm -rf router2203.json
+
 cp -f $GITHUB_WORKSPACE/patch/fw40/router2203.json router2203.json
 cp -f $GITHUB_WORKSPACE/patch/fw40/config_fw40.txt configfiles/template/.config_fw40
 cp -rf $GITHUB_WORKSPACE/patch/fw40 configfiles
