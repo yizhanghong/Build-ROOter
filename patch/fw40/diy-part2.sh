@@ -22,7 +22,7 @@ git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status.git package
 rm -rf configfiles/template/.config_fw40
 rm -rf router2203.json
 cp -f $GITHUB_WORKSPACE/patch/fw40/router2203.json router2203.json
-cp -f $GITHUB_WORKSPACE/patch/fw40/config_fw40.txt configfiles/template/.config_x86-64
+cp -f $GITHUB_WORKSPACE/patch/fw40/config_fw40.txt configfiles/template/.config_fw40
 cp -rf $GITHUB_WORKSPACE/patch/fw40 configfiles
 # 禁止进入默认配置
 sed -i "s/make defconfig/#make defconfig/g" build
