@@ -14,7 +14,7 @@ on:
 env:
   REPO_URL: https://github.com/ofmodemsandmen/ROOterSource2203
   REPO_BRANCH: main
-  CONFIG_FILE: patch/x86/.config_x86-64
+  CONFIG_FILE: patch/x86/config_x86-64.txt
   DIY_SCRIPT: patch/x86/diy-part2.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
