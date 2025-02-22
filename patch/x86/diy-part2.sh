@@ -28,3 +28,9 @@ cp -rf $GITHUB_WORKSPACE/patch/x86 configfiles
 cp -rf $GITHUB_WORKSPACE/patch/mt76 package/kernel
 # 禁止进入默认配置
 sed -i "s/make defconfig/#make defconfig/g" build
+# 升级内核
+git clone --single-branch -b openwrt-22.03 https://git.openwrt.org/openwrt/openwrt.git newver
+rm -rf include/kernel-5.10
+rm -rf target/linux
+cp -f newver/include/kernel-5.10 include/kernel-5.10
+cp -rf newver/target/linux target
