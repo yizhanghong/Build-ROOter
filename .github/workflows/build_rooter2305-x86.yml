@@ -1,4 +1,4 @@
-name: build_rooter2203-x86
+name: build_rooter2305-x86
 
 on:
   repository_dispatch:
@@ -15,7 +15,7 @@ env:
   REPO_URL: https://github.com/ofmodemsandmen/ROOterSource2305
   REPO_BRANCH: main
   CONFIG_FILE: patch/x86/config_x86-64.txt
-  DIY_SCRIPT: patch/x86/diy-part2.sh
+  DIY_SCRIPT: patch/x86/diy-part3.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
