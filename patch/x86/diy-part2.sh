@@ -30,19 +30,21 @@ cp -rf $GITHUB_WORKSPACE/patch/x86 configfiles
 sed -i "s/make defconfig/#make defconfig/g" build
 # 升级内核
 git clone --single-branch -b openwrt-22.03 https://git.openwrt.org/openwrt/openwrt.git newver
-cp -f target/linux/generic/pending-5.10/900-driver-22032.patch newver/900-driver-22032.patch
-rm -rf config
-rm -rf images
-rm -rf include
-rm -rf scripts
-rm -rf target
-rm -rf toolchain
-rm -rf tools
-cp -rf newver/config ./
-cp -rf newver/images ./
-cp -rf newver/include ./
-cp -rf newver/scripts ./
-cp -rf newver/target ./
-cp -rf newver/toolchain ./
-cp -rf newver/tools ./
-cp -f newver/900-driver-22032.patch target/linux/generic/pending-5.10/900-driver-22032.patch
+rm -f include/kernel-5.10
+cp -f newver/include/kernel-5.10 include/kernel-5.10
+#cp -f target/linux/generic/pending-5.10/900-driver-22032.patch newver/900-driver-22032.patch
+#rm -rf config
+#rm -rf images
+#rm -rf include
+#rm -rf scripts
+#rm -rf target
+#rm -rf toolchain
+#rm -rf tools
+#cp -rf newver/config ./
+#cp -rf newver/images ./
+#cp -rf newver/include ./
+#cp -rf newver/scripts ./
+#cp -rf newver/target ./
+#cp -rf newver/toolchain ./
+#cp -rf newver/tools ./
+#cp -f newver/900-driver-22032.patch target/linux/generic/pending-5.10/900-driver-22032.patch
