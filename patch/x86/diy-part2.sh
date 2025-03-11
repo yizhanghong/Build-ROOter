@@ -50,5 +50,5 @@ sed -i "s/make defconfig/#make defconfig/g" build
 #cp -f newver/900-driver-22032.patch target/linux/generic/pending-5.10/900-driver-22032.patch
 
 #升级 golang
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
+#rm -rf feeds/packages/lang/golang
+#git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
