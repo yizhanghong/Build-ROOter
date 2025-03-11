@@ -29,7 +29,7 @@ cp -rf $GITHUB_WORKSPACE/patch/x86 configfiles
 # 禁止进入默认配置
 sed -i "s/make defconfig/#make defconfig/g" build
 # 升级内核
-git clone --single-branch -b openwrt-22.03 https://git.openwrt.org/openwrt/openwrt.git newver
+#git clone --single-branch -b openwrt-22.03 https://git.openwrt.org/openwrt/openwrt.git newver
 #rm -f include/kernel-5.10
 #cp -f newver/include/kernel-5.10 include/kernel-5.10
 #cp -f target/linux/generic/pending-5.10/900-driver-22032.patch newver/900-driver-22032.patch
@@ -48,3 +48,7 @@ git clone --single-branch -b openwrt-22.03 https://git.openwrt.org/openwrt/openw
 #cp -rf newver/toolchain ./
 #cp -rf newver/tools ./
 #cp -f newver/900-driver-22032.patch target/linux/generic/pending-5.10/900-driver-22032.patch
+
+#升级 golang
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
