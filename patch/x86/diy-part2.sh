@@ -29,7 +29,7 @@ cp -rf $GITHUB_WORKSPACE/patch/x86 configfiles
 # 禁止进入默认配置
 sed -i "s/make defconfig/#make defconfig/g" build
 # 禁止build对argon主题修改
-sed -i "s/"$model_argon \>/rosy.png" \>/g" build
+sed -i 's/"$model_argon >/rosy.png" >/g' build
 # 升级内核
 #git clone --single-branch -b openwrt-22.03 https://git.openwrt.org/openwrt/openwrt.git newver
 #rm -f include/kernel-5.10
