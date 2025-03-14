@@ -409,7 +409,19 @@ CONFIG_FEED_luci=y
 CONFIG_FEED_routing=y
 CONFIG_FEED_telephony=y
 CONFIG_FEED_SSRplus=y
-CONFIG_FEED_modemfeed=y
+#CONFIG_FEED_modemfeed=y
+
+#
+# istoreos
+#
+CONFIG_DEFAULT_istoreos-files=y
+CONFIG_DEFAULT_luci-app-store=y
+CONFIG_PACKAGE_istoreos-files_CUSTOMIZE_SETTINGS=y
+CONFIG_FEED_store=y
+CONFIG_PACKAGE_istoreos-files=y
+CONFIG_PACKAGE_istoreos-intl=m
+CONFIG_PACKAGE_luci-app-istorex=m
+CONFIG_PACKAGE_luci-app-store=y
 
 #
 # Base system
