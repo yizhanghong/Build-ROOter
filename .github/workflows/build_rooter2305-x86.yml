@@ -12,7 +12,8 @@ on:
     - cron: 0 22 * * 5
 
 env:
-  REPO_URL: https://github.com/ofmodemsandmen/ROOterSource2305
+  #REPO_URL: https://github.com/ofmodemsandmen/ROOterSource2305
+  REPO_URL: https://github.com/Demiurge67/R2305
   REPO_BRANCH: main
   CONFIG_FILE: patch/x86/config_x86-64.txt
   DIY_SCRIPT: patch/x86/diy-part3.sh
