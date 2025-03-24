@@ -24,10 +24,15 @@ rm -rf router2305.json
 #rm -rf package/kernel/mt76
 cp -f $GITHUB_WORKSPACE/patch/x86/router2305.json router2305.json
 #cp -f $GITHUB_WORKSPACE/patch/x86/config_x86-64.txt configfiles/template/.config_x86-64
-#cp -rf $GITHUB_WORKSPACE/patch/x86 configfiles
+cp -rf $GITHUB_WORKSPACE/patch/x86 configfiles
 #cp -rf $GITHUB_WORKSPACE/patch/mt76 package/kernel
 # 禁止进入默认配置
 #sed -i "s/make defconfig/#make defconfig/g" build
+# 禁止build对argon主题修改
+sed -i 's/"$model_argon >/open.png" >/g' build
+sed -i "s/LUCI_DEPENDS/#LUCI_DEPENDS/g" feeds/luci/protocols/luci-proto-mbim/Makefile
+sed -i "s/LUCI_DEPENDS/#LUCI_DEPENDS/g" feeds/luci/protocols/luci-proto-qmi/Makefile
+
 # 升级内核
 #git clone --single-branch -b openwrt-22.03 https://git.openwrt.org/openwrt/openwrt.git newver
 #rm -rf include/kernel-5.10
