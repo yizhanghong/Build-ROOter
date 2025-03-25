@@ -23,7 +23,7 @@ rm -rf configfiles/template/.config_x86-64
 rm -rf router2305.json
 #rm -rf package/kernel/mt76
 cp -f $GITHUB_WORKSPACE/patch/x86/router2305.json router2305.json
-cp -f $GITHUB_WORKSPACE/patch/x86/config_x86-64(2305).txt configfiles/template/.config_x86-64
+cp -f $GITHUB_WORKSPACE/patch/x86/config_x86-64-2305.txt configfiles/template/.config_x86-64
 cp -rf $GITHUB_WORKSPACE/patch/x86 configfiles
 
 # 添加config
