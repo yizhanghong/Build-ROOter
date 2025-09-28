@@ -29,8 +29,8 @@ cp -rf $GITHUB_WORKSPACE/patch/x86 configfiles
 # 添加config
 echo "
 CONFIG_PACKAGE_luci-app-statistics=y
-#CONFIG_PACKAGE_luci-app-temp-status=y
-#CONFIG_PACKAGE_luci-app-cpu-status=y 
+CONFIG_PACKAGE_luci-app-temp-status=y
+CONFIG_PACKAGE_luci-app-cpu-status=y 
 CONFIG_PACKAGE_luci-app-passwall=y
 
 #
