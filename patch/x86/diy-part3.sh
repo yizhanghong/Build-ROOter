@@ -57,6 +57,10 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin is not set
 " >> configfiles/template/.config_x86-64
 
+#更新golang到1.25
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/kenzok8/golang -b 1.25 feeds/packages/lang/golang
+
 # 禁止进入默认配置
 #sed -i "s/make defconfig/#make defconfig/g" build
 # 禁止build对argon主题修改
