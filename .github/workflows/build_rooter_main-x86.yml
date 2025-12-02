@@ -1,4 +1,4 @@
-name: build_rooter2305-x86
+name: build_rooter_main-x86
 
 on:
   repository_dispatch:
