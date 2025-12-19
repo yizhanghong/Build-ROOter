@@ -15,8 +15,8 @@ env:
   REPO_URL: https://gitlab.com/ofmodemsandmen/SourceMain
   #REPO_URL: https://github.com/Demiurge67/R2305
   REPO_BRANCH: main
-  CONFIG_FILE: patch/x86/config_x86-64.txt
-  DIY_SCRIPT: patch/x86/diy-part3.sh
+  CONFIG_FILE: patch/x86/config_x86-64-latest.txt
+  DIY_SCRIPT: patch/x86/diy-part4.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
