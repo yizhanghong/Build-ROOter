@@ -19,16 +19,29 @@ git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/passwa
 git clone --depth=1 https://github.com/gSpotx2f/luci-app-cpu-status.git package/luci-app-cpu-status
 git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status.git package/luci-app-temp-status
 # 删除已有配置
-rm -rf configfiles/template/.config_x86-64
-rm -rf router2305.json
+#rm -rf configfiles/template/.config_x86-64
+rm -rf routermain.json
 #rm -rf package/kernel/mt76
-cp -f $GITHUB_WORKSPACE/patch/x86/router2305.json router2305.json
-cp -f $GITHUB_WORKSPACE/patch/x86/router2305.json router.json
-cp -f $GITHUB_WORKSPACE/patch/x86/config_x86-64-latest.txt configfiles/template/.config_x86-64
+#cp -f $GITHUB_WORKSPACE/patch/x86/router2305.json router2305.json
+cp -f $GITHUB_WORKSPACE/patch/x86/router2305.json routermain.json
+#cp -f $GITHUB_WORKSPACE/patch/x86/config_x86-64-latest.txt configfiles/template/.config_x86-64
 cp -rf $GITHUB_WORKSPACE/patch/x86 configfiles
 
 # 添加config
 echo "
+CONFIG_LUCI_LANG_zh_Hans=y
+CONFIG_PACKAGE_ttyd=y
+CONFIG_PACKAGE_nlbwmon=y
+CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
+CONFIG_PACKAGE_luci-app-ttyd=y
+CONFIG_PACKAGE_luci-app-nlbwmon=y
+CONFIG_PACKAGE_luci-app-p910nd=y
+CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_luci-app-wol=y
+CONFIG_PACKAGE_luci-theme-argon=y
+CONFIG_PACKAGE_luci-app-ksmbd=y
+CONFIG_PACKAGE_luci-app-ddns=y
+CONFIG_PACKAGE_luci-app-commands=y
 CONFIG_PACKAGE_luci-app-statistics=y
 CONFIG_PACKAGE_luci-app-temp-status=y
 CONFIG_PACKAGE_luci-app-cpu-status=y 
@@ -56,6 +69,28 @@ CONFIG_PACKAGE_luci-app-passwall=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin is not set
+
+CONFIG_PACKAGE_kmod-rtl8821ae=y
+CONFIG_PACKAGE_kmod-rtl8xxxu=y
+CONFIG_PACKAGE_kmod-rtlwifi=y
+# CONFIG_PACKAGE_RTLWIFI_DEBUG is not set
+CONFIG_PACKAGE_kmod-rtlwifi-btcoexist=y
+CONFIG_PACKAGE_kmod-rtlwifi-pci=y
+CONFIG_PACKAGE_kmod-rtw88=y
+# CONFIG_PACKAGE_RTW88_DEBUG is not set
+# CONFIG_PACKAGE_RTW88_DEBUGFS is not set
+# CONFIG_PACKAGE_kmod-rtw88-8723de is not set
+CONFIG_PACKAGE_kmod-rtw88-8821c=y
+CONFIG_PACKAGE_kmod-rtw88-8821ce=y
+CONFIG_PACKAGE_kmod-rtw88-8821cu=y
+CONFIG_PACKAGE_kmod-rtw88-8822b=y
+CONFIG_PACKAGE_kmod-rtw88-8822be=y
+CONFIG_PACKAGE_kmod-rtw88-8822bu=y
+CONFIG_PACKAGE_kmod-rtw88-8822c=y
+CONFIG_PACKAGE_kmod-rtw88-8822ce=y
+CONFIG_PACKAGE_kmod-rtw88-8822cu=y
+CONFIG_PACKAGE_kmod-rtw88-pci=y
+CONFIG_PACKAGE_kmod-rtw88-usb=y
 " >> configfiles/template/.config_x86-64
 
 echo "staging_dir/host/bin/python 创建软链接"
