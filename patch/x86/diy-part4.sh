@@ -58,6 +58,16 @@ CONFIG_PACKAGE_luci-app-passwall=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin is not set
 " >> configfiles/template/.config_x86-64
 
+echo "staging_dir/host/bin/python 创建软链接"
+rm -rf $GITHUB_WORKSPACE/workspace/openwrt/staging_dir/host/bin/python
+ln -s /usr/bin/python $GITHUB_WORKSPACE/workspace/openwrt/staging_dir/host/bin/python
+$GITHUB_WORKSPACE/workspace/openwrt/staging_dir/host/bin/python --version
+
+echo "staging_dir/host/bin/python3 创建软链接"
+rm -rf $GITHUB_WORKSPACE/workspace/openwrt/staging_dir/host/bin/python3
+ln -s /usr/bin/python $GITHUB_WORKSPACE/workspace/openwrt/staging_dir/host/bin/python3
+$GITHUB_WORKSPACE/workspace/openwrt/staging_dir/host/bin/python3 --version
+
 #更新golang到1.25
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/kenzok8/golang -b 1.25 feeds/packages/lang/golang
