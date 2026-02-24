@@ -13,9 +13,9 @@
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 # passwall
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/passwall2 
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/passwall
+git clone --depth=1 https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages
+git clone --depth=1 https://github.com/Openwrt-Passwall/openwrt-passwall2 package/passwall2 
+git clone --depth=1 https://github.com/Openwrt-Passwall/openwrt-passwall package/passwall
 git clone --depth=1 https://github.com/gSpotx2f/luci-app-cpu-status.git package/luci-app-cpu-status
 git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status.git package/luci-app-temp-status
 # 删除已有配置
