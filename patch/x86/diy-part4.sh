@@ -45,7 +45,7 @@ CONFIG_PACKAGE_luci-app-commands=y
 CONFIG_PACKAGE_luci-app-statistics=y
 CONFIG_PACKAGE_luci-app-temp-status=y
 CONFIG_PACKAGE_luci-app-cpu-status=y 
-CONFIG_PACKAGE_luci-app-passwall=y
+#CONFIG_PACKAGE_luci-app-passwall=y
 
 #
 # Configuration
